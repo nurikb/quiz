@@ -56,11 +56,16 @@ def write_to_db(data):
 @app.post('/question')
 def post_question(item: Questions):
     write_to_db(get_data(item.question_number))
-    last_record = Quiz.select().order_by(Quiz.id.desc()).get()
-    response = {
-        "id": last_record.question_id,
-        "question_text": last_record.question_text,
-        "answer_text": last_record.answer_text,
-        "created_at": last_record.date
-    }
+    try:
+        last_record = Quiz.select().order_by(Quiz.id.desc()).get()
+        response = {
+            "id": last_record.question_id,
+            "question_text": last_record.question_text,
+            "answer_text": last_record.answer_text,
+            "created_at": last_record.date
+        }
+    except:
+        response = {
+            "not_exists": None
+        }
     return response

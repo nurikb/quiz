@@ -1,18 +1,6 @@
 version: '3'
 
 services:
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-    volumes:
-      - .:/quiz
-    ports:
-      - 8000:8000
-    restart: "on-failure"
-    depends_on:
-      - db
   db:
     container_name: db
     image: postgres:12
@@ -23,6 +11,19 @@ services:
     env_file:
       - .env
     restart: "on-failure"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - .:/quiz
+    ports:
+      - 8000:8000
+    restart: "on-failure"
+    depends_on:
+      - db
 
 volumes:
   pgdata:
