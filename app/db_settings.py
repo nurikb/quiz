@@ -2,8 +2,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-DB_NAME = os.environ["DB_NAME"] if os.environ.get("DB_NAME") else "postgres"
-DB_USER = os.environ["DB_USER"] if os.environ.get("DB_USER") else "postgres"
-DB_PASS = os.environ["DB_PASS"] if os.environ.get("DB_PASS") else "postgres"
-DB_HOST = os.environ["DB_HOST"] if os.environ.get("DB_HOST") else "db"
+DB_NAME = os.environ["POSTGRES_DB"] if os.environ.get("POSTGRES_DB") else "postgres"
+DB_USER = os.environ["POSTGRES_USER"] if os.environ.get("POSTGRES_USER") else "postgres"
+DB_PASS = os.environ["POSTGRES_PASSWORD"] if os.environ.get("POSTGRES_PASSWORD") else "postgres"
+DB_HOST = "db"
 DB_PORT = os.environ["DB_PORT"] if os.environ.get("DB_PORT") else "5432"

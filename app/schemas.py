@@ -1,8 +1,7 @@
 from peewee import *
+from .db_settings import DB_HOST, DB_NAME, DB_PASS, DB_USER, DB_PORT
 
-from .db_settings import DB_HOST, DB_NAME, DB_PASS, DB_USER
-
-db = PostgresqlDatabase(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
+db = PostgresqlDatabase(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
 
 
 class Quiz(Model):

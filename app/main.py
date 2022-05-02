@@ -8,7 +8,6 @@ from .schemas import db, Quiz
 app = FastAPI()
 db.connect()
 db.create_tables([Quiz,])
-print('created')
 
 
 class Questions(BaseModel):
@@ -55,7 +54,7 @@ def write_to_db(data):
 
 
 @app.post('/question')
-def get_item(item: Questions):
+def post_question(item: Questions):
     write_to_db(get_data(item.question_number))
     last_record = Quiz.select().order_by(Quiz.id.desc()).get()
     response = {
